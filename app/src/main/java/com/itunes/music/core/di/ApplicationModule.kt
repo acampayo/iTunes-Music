@@ -3,6 +3,7 @@ package com.tvshows.core.di
 import android.content.Context
 import com.itunes.music.AndroidApplication
 import com.itunes.music.features.songs.SongsApi
+import com.itunes.music.features.songs.SongsRepository
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -16,6 +17,8 @@ import javax.inject.Singleton
 class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides @Singleton fun provideApplicationContext(): Context = application
+    @Provides @Singleton fun songsRepositoryProvider(
+            network: SongsRepository.Network): SongsRepository = network
 
     @Provides @Singleton fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
