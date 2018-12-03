@@ -1,9 +1,10 @@
-package com.itunes.music
+package com.itunes.music.features.songs
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.itunes.music.R
 
-class MainActivity : AppCompatActivity() {
+class SongsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

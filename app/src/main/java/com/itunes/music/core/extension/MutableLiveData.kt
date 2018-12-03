@@ -1,4 +1,4 @@
-package com.tvshows.core.extension
+package com.itunes.music.core.extension
 
 import android.arch.lifecycle.MutableLiveData
 

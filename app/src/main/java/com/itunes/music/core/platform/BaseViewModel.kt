@@ -1,8 +1,8 @@
-package com.tvshows.core.platform
+package com.itunes.music.core.platform
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.tvshows.core.exception.Failure
+import com.itunes.music.core.exception.Failure
 
 abstract class BaseViewModel : ViewModel() {
 
