@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.itunes.music.AndroidApplication
+import com.itunes.music.R
 import com.itunes.music.core.di.ApplicationComponent
 import javax.inject.Inject
 

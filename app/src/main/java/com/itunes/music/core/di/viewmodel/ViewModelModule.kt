@@ -16,7 +16,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SongsViewModel::class)
-    internal abstract fun popularTVShowsViewModel(viewModel: SongsViewModel): ViewModel
+    internal abstract fun songsViewModel(viewModel: SongsViewModel): ViewModel
 
     //Add more ViewModels here
 }
