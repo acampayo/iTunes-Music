@@ -35,6 +35,7 @@
     <ListView
         android:id="@+id/songsList"
         android:layout_below="@id/search"
+        android:layout_above="@+id/sortFilter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white" />
@@ -52,5 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
+    <Spinner
+        android:id="@+id/sortFilter"
+        android:layout_alignParentBottom="true"
+        android:entries="@array/sort_filter"
+        android:prompt="@string/sort_filter_prompt"
+        android:padding="@dimen/default_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

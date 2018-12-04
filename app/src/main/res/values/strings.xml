@@ -5,4 +5,13 @@
     <string name="empty_message">There are no songs to show</string>
     <string name="action_reload">Reload</string>
     <string name="search">Search</string>
+    <string name="sort_filter_prompt">Select a sort filter</string>
+
+    <string-array name="sort_filter">
+        <item>@string/sort_filter_prompt</item>
+        <item>Length</item>
+        <item>Genre</item>
+        <item>Price</item>
+    </string-array>
+
 </resources>

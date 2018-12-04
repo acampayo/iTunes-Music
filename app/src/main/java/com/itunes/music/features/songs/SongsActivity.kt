@@ -6,10 +6,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import com.itunes.music.R
 import com.itunes.music.core.exception.Failure
 import com.itunes.music.core.platform.BaseActivity
 import kotlinx.android.synthetic.main.activity_songs.*
+import com.itunes.music.features.songs.SongsSort.*
 import javax.inject.Inject
 
 
@@ -24,7 +26,25 @@ class SongsActivity : BaseActivity() {
         setContentView(R.layout.activity_songs)
         appComponent.inject(this)
         initializeViewModel()
+        initializeViews()
+    }
+
+    private fun initializeViews() {
         songsList.adapter = songsAdapter
+
+        sortFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(position) {
+                    1 -> viewModel.sort(Length())
+                    2 -> viewModel.sort(Genre())
+                    3 -> viewModel.sort(Price())
+                }
+            }
+        }
     }
 
     private fun initializeViewModel() {
