@@ -2,4 +2,6 @@
     <string name="app_name">iTunes-Music</string>
     <string name="network_connection">There is no network connection</string>
     <string name="server_error">Unexpected Server Error</string>
+    <string name="empty_message">There are no songs to show</string>
+    <string name="action_reload">Reload</string>
 </resources>
