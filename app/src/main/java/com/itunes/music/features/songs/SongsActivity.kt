@@ -1,9 +1,11 @@
 package com.itunes.music.features.songs
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.itunes.music.R
 import com.itunes.music.core.exception.Failure
 import com.itunes.music.core.platform.BaseActivity
@@ -23,7 +25,6 @@ class SongsActivity : BaseActivity() {
         appComponent.inject(this)
         initializeViewModel()
         songsList.adapter = songsAdapter
-        search()
     }
 
     private fun initializeViewModel() {
@@ -34,8 +35,13 @@ class SongsActivity : BaseActivity() {
 
     private fun showSongs(songs: List<Song>?) {
         songsList.visibility = View.VISIBLE
-        emptyView.visibility = View.GONE
         songsAdapter.songs = songs.orEmpty()
+
+        emptyView.visibility = when (songsAdapter.songs.isEmpty()) {
+            true -> View.VISIBLE
+            false -> View.GONE
+        }
+
         progress.visibility = View.GONE
     }
 
@@ -58,7 +64,14 @@ class SongsActivity : BaseActivity() {
         emptyView.visibility = View.GONE
         progress.visibility = View.VISIBLE
 
-        val term = "Michael Jackson"
+        val term = searchBox.text.toString()
         viewModel.search(term)
+    }
+
+    fun onSearch(view: View) {
+        val inputMethodManager = getSystemService(
+                Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        search()
     }
 }
