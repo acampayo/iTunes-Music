@@ -53,4 +53,9 @@ class SongsPlayerViewModel
         mediaPlayer.stop()
         mediaPlayer.release()
     }
+
+    fun setOnCompletionListener(onCompletionListener: MediaPlayer.OnCompletionListener) {
+        mediaPlayer.setOnCompletionListener(onCompletionListener)
+    }
+
 }

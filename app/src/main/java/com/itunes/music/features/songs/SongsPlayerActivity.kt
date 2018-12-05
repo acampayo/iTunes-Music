@@ -2,6 +2,7 @@ package com.itunes.music.features.songs
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.app.ShareCompat
 import android.view.View
@@ -35,6 +36,10 @@ class SongsPlayerActivity : BaseActivity() {
 
         viewModel.songs = songs
         viewModel.trackPosition = trackPosition
+
+        viewModel.setOnCompletionListener(MediaPlayer.OnCompletionListener {
+            playPauseButton.setImageResource(android.R.drawable.ic_media_play)
+        })
     }
 
     private fun showSong(song: Song?){
@@ -106,7 +111,7 @@ class SongsPlayerActivity : BaseActivity() {
         ShareCompat.IntentBuilder
                 .from(this)
                 .setType("text/plain")
-                .setChooserTitle("Share URL")
+                .setChooserTitle(R.string.share_title)
                 .setText(url)
                 .startChooser()
     }
