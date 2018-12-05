@@ -3,6 +3,7 @@ package com.itunes.music.features.songs
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -32,7 +33,14 @@ class SongsActivity : BaseActivity() {
     private fun initializeViews() {
         songsList.adapter = songsAdapter
 
-        sortFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        songsList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this, SongsPlayerActivity::class.java)
+            intent.putExtra(SongsConstants.SELECTED_SONG_POSITION, position)
+            intent.putParcelableArrayListExtra(SongsConstants.SONGS_KEY, ArrayList(viewModel.songs.value))
+            startActivity(intent)
+        }
+
+        sortFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
