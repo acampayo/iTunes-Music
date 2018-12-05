@@ -3,6 +3,7 @@ package com.itunes.music.features.songs
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.ShareCompat
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -72,7 +73,7 @@ class SongsPlayerActivity : BaseActivity() {
     }
 
     fun onPlayPause(view: View) {
-        if (viewModel.mediaPlayer.isPlaying) {
+        if (viewModel.isPlaying) {
             viewModel.pause()
             playPauseButton.setImageResource(android.R.drawable.ic_media_play)
         } else {
@@ -97,6 +98,17 @@ class SongsPlayerActivity : BaseActivity() {
         } else {
             playPauseButton.setImageResource(android.R.drawable.ic_media_play)
         }
+    }
+
+    fun onShare(view: View) {
+        val url = viewModel.previewUrl
+
+        ShareCompat.IntentBuilder
+                .from(this)
+                .setType("text/plain")
+                .setChooserTitle("Share URL")
+                .setText(url)
+                .startChooser()
     }
 
     override fun onDestroy() {

@@ -19,6 +19,9 @@ class SongsPlayerViewModel
         song.value = songs[trackPosition]
     }
 
+    val isPlaying: Boolean get() = mediaPlayer.isPlaying
+    val previewUrl: String get() = song.value?.previewUrl ?: ""
+
     fun play() {
         if (shouldReset) {
             mediaPlayer.reset()
