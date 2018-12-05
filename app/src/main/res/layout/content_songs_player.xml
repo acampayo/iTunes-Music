@@ -16,6 +16,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:layout_margin="@dimen/default_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/playPauseButton"
+                android:onClick="onPlayPause"
+                android:src="@android:drawable/ic_media_play"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/previousButton"
+                android:onClick="onPrevious"
+                android:src="@android:drawable/ic_media_previous"
+                android:layout_toStartOf="@id/playPauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/nextButton"
+                android:onClick="onNext"
+                android:src="@android:drawable/ic_media_next"
+                android:layout_toEndOf="@id/playPauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/artist"
             android:textSize="16sp"

@@ -3,6 +3,7 @@ package com.itunes.music.features.songs
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -53,9 +54,9 @@ class SongsPlayerActivity : BaseActivity() {
     }
 
     private fun setUpToolbar(song: Song) {
-        toolbar.title = song.trackName
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbarLayout.title = song.trackName
         toolbar.setNavigationOnClickListener { finish() }
     }
 
@@ -68,5 +69,38 @@ class SongsPlayerActivity : BaseActivity() {
 
     private fun showFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun onPlayPause(view: View) {
+        if (viewModel.mediaPlayer.isPlaying) {
+            viewModel.pause()
+            playPauseButton.setImageResource(android.R.drawable.ic_media_play)
+        } else {
+            viewModel.play()
+            playPauseButton.setImageResource(android.R.drawable.ic_media_pause)
+        }
+    }
+
+    fun onPrevious(view: View) {
+        viewModel.previous()
+        setPlayPauseButton()
+    }
+
+    fun onNext(view: View) {
+        viewModel.next()
+        setPlayPauseButton()
+    }
+
+    private fun setPlayPauseButton() {
+        if (viewModel.mediaPlayer.isPlaying) {
+            playPauseButton.setImageResource(android.R.drawable.ic_media_pause)
+        } else {
+            playPauseButton.setImageResource(android.R.drawable.ic_media_play)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.stop()
     }
 }
